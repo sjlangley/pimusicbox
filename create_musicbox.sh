@@ -10,7 +10,11 @@ sed -i '/mmcblk0p1\s\+\/boot\s\+vfat/ s/defaults /defaults,user,umask=000/' /etc
 printf 'APT::Install-Recommends "0";\nAPT::Install-Suggests "0";\n' > /etc/apt/apt.conf
 
 #Install the packages you need to continue:
-apt-get update && apt-get --yes install sudo wget unzip mc
+apt-get update && apt-get --yes install \
+mc \
+sudo \
+unzip \
+wget
 
 #Next, issue this command to update the distribution.
 #This is good because newer versions have fixes for audio and usb-issues:
@@ -36,6 +40,17 @@ firmware-linux-nonfree \
 firmware-ralink \
 firmware-realtek \
 zd1211-firmware \
+
+#upmpdcli repository requires configuration
+mkdir -p /etc/apt/sources.list.d
+printf \
+"deb http://www.lesbonscomptes.com/upmpdcli/downloads/debian/ unstable main\n"\
+"deb-src http://www.lesbonscomptes.com/upmpdcli/downloads/debian/ unstable main\n" > /etc/apt/sources.list.d/upmpdcli.list
+
+gpg --recv-key '4C6E 80B6 374D CD5F 53AB 706A 32D9 C2A8 35ED 066C' --keyserver pool.sks-keyservers.net 
+gpg --recv-key 'F8E3 3472 5692 2A8A E767 605B 7808 CE96 D38B 9201' --keyserver pool.sks-keyservers.net 
+gpg --export '32D9C2A835ED066C' | sudo apt-key add - 
+gpg --export '7808CE96D38B9201' | sudo apt-key add -
 
 #Then install all packages we need with this command:
 sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install \
@@ -77,7 +92,29 @@ wpasupplicant \
 watchdog
 
 #mopidy from pip
-sudo pip install -U mopidy mopidy-spotify mopidy-local-sqlite mopidy-local-whoosh mopidy-scrobbler mopidy-soundcloud mopidy-dirble mopidy-tunein mopidy-gmusic mopidy-subsonic mopidy-mobile mopidy-moped mopidy-musicbox-webclient mopidy-websettings mopidy-internetarchive mopidy-podcast mopidy-podcast-itunes mopidy-podcast-gpodder.net Mopidy-Simple-Webclient mopidy-somafm mopidy-spotify-tunigo mopidy-youtube
+sudo pip install -U \
+mopidy \
+mopidy-spotify \
+mopidy-local-sqlite \
+mopidy-local-whoosh \
+mopidy-scrobbler \
+mopidy-soundcloud \
+mopidy-dirble \
+mopidy-tunein \
+mopidy-gmusic \
+mopidy-subsonic \
+mopidy-mobile \
+mopidy-moped \
+mopidy-musicbox-webclient \
+mopidy-websettings \
+mopidy-internetarchive \
+mopidy-podcast \
+mopidy-podcast-itunes \
+mopidy-podcast-gpodder.net \
+Mopidy-Simple-Webclient \
+mopidy-somafm \
+mopidy-spotify-tunigo \
+mopidy-youtube
 
 #Google Music works a lot better if you use the development version of mopidy-gmusic:
 sudo pip install https://github.com/hechtus/mopidy-gmusic/archive/develop.zip
