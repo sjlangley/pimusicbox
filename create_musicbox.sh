@@ -24,8 +24,57 @@ apt-get dist-upgrade -y
 #update time, to prevent update problems
 ntpdate -u ntp.ubuntu.com
 
+# Not used for RPi 3
+WIFI_FIRMWARE=atmel-firmware \
+firmware-atheros \
+firmware-brcm80211 \
+firmware-ipw2x00 \
+firmware-iwlwifi \
+firmware-libertas \
+firmware-linux \
+firmware-linux-nonfree \
+firmware-ralink \
+firmware-realtek \
+zd1211-firmware \
+
 #Then install all packages we need with this command:
-sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install logrotate alsa-utils wpasupplicant gstreamer0.10-alsa ifplugd gstreamer0.10-fluendo-mp3 gstreamer0.10-tools samba dos2unix avahi-utils alsa-base cifs-utils avahi-autoipd libnss-mdns ntpdate ca-certificates ncmpcpp rpi-update alsa-firmware-loaders iw atmel-firmware firmware-atheros firmware-brcm80211 firmware-ipw2x00 firmware-iwlwifi firmware-libertas firmware-linux firmware-linux-nonfree firmware-ralink firmware-realtek zd1211-firmware iptables build-essential python-dev python-pip python-gst0.10 gstreamer0.10-plugins-good gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly usbmount monit upmpdcli watchdog dropbear mpc dosfstools
+sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install \
+avahi-utils \
+avahi-autoipd \
+alsa-base \
+alsa-utils \
+alsa-firmware-loaders \
+build-essential \
+ca-certificates \
+cifs-utils \
+dos2unix \
+dosfstools \
+dropbear \
+gstreamer0.10-alsa \
+gstreamer0.10-fluendo-mp3 \
+gstreamer0.10-tools \
+gstreamer0.10-plugins-good \
+gstreamer0.10-plugins-bad \
+gstreamer0.10-plugins-ugly \
+ifplugd \
+iptables \
+iw \
+libnss-mdns \
+libffi-dev \
+logrotate \
+monit \
+mpc \
+ntpdate \
+ncmpcpp \
+python-dev \
+python-pip \
+python-gst0.10 \
+rpi-update \
+samba \
+usbmount \
+upmpdcli \
+wpasupplicant \
+watchdog
 
 #mopidy from pip
 sudo pip install -U mopidy mopidy-spotify mopidy-local-sqlite mopidy-local-whoosh mopidy-scrobbler mopidy-soundcloud mopidy-dirble mopidy-tunein mopidy-gmusic mopidy-subsonic mopidy-mobile mopidy-moped mopidy-musicbox-webclient mopidy-websettings mopidy-internetarchive mopidy-podcast mopidy-podcast-itunes mopidy-podcast-gpodder.net Mopidy-Simple-Webclient mopidy-somafm mopidy-spotify-tunigo mopidy-youtube
